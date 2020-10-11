@@ -1,4 +1,4 @@
-module github.com/golobby/container
+module github.com/Jblew/ioccontainer
 
 go 1.11
 

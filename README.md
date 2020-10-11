@@ -1,8 +1,8 @@
-[![GoDoc](https://godoc.org/github.com/golobby/container?status.svg)](https://godoc.org/github.com/golobby/container)
-[![Build Status](https://travis-ci.org/golobby/container.svg?branch=master)](https://travis-ci.org/golobby/container)
-[![Go Report Card](https://goreportcard.com/badge/github.com/golobby/container)](https://goreportcard.com/report/github.com/golobby/container)
-[![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome) 
-[![Coverage Status](https://coveralls.io/repos/github/golobby/container/badge.svg?branch=master)](https://coveralls.io/github/golobby/container?branch=master)
+[![GoDoc](https://godoc.org/github.com/Jblew/ioccontainer?status.svg)](https://godoc.org/github.com/Jblew/ioccontainer)
+[![Build Status](https://travis-ci.org/Jblew/ioccontainer.svg?branch=master)](https://travis-ci.org/Jblew/ioccontainer)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Jblew/ioccontainer)](https://goreportcard.com/report/github.com/Jblew/ioccontainer)
+[![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
+[![Coverage Status](https://coveralls.io/repos/github/Jblew/ioccontainer/badge.svg?branch=master)](https://coveralls.io/github/Jblew/ioccontainer?branch=master)
 
 # Container
 A lightweight yet powerful IoC container for Go projects. It provides a simple, fluent and easy-to-use interface to make dependency injection in GoLang easier.
@@ -16,13 +16,13 @@ It requires Go `v1.11` or newer versions.
 To install this package, run the following command in the root of your project.
 
 ```bash
-go get github.com/golobby/container
+go get github.com/Jblew/ioccontainer
 ```
 
 ### Introduction
 GoLobby Container like any other IoC container is used to bind abstractions to their implementations.
-Binding is a process of introducing an IoC container that which concrete (implementation) is appropriate for an abstraction. In this process, you also determine how it must be resolved, singleton or transient. 
-In singleton binding, the container provides an instance once and returns it for each request. 
+Binding is a process of introducing an IoC container that which concrete (implementation) is appropriate for an abstraction. In this process, you also determine how it must be resolved, singleton or transient.
+In singleton binding, the container provides an instance once and returns it for each request.
 In transient binding, the container always returns a brand new instance for each request.
 After the binding process, you can ask the IoC container to get the appropriate implementation of the abstraction that your code depends on. In this case, your code depends on abstractions, not implementations.
 
@@ -84,7 +84,7 @@ m.Send("info@miladrahimi.com", "Hello Milad!")
 
 #### Using Closures
 
-Another way to resolve the dependencies is by using a function (receiver) that its arguments are the abstractions you 
+Another way to resolve the dependencies is by using a function (receiver) that its arguments are the abstractions you
 need. Container will invoke the function and pass the related implementations for each abstraction.
 
 ```go
@@ -148,10 +148,10 @@ The rest stays the same. The default container is still available.
 ### Usage Tips
 
 #### Performance
-The package Container inevitably uses reflection in binding and resolving processes. 
-If performance is a concern, you should use this package more carefully. 
-Try to bind and resolve the dependencies out of the processes that are going to run many times 
-(for example, on each request), put it where that run only once when you run your applications 
+The package Container inevitably uses reflection in binding and resolving processes.
+If performance is a concern, you should use this package more carefully.
+Try to bind and resolve the dependencies out of the processes that are going to run many times
+(for example, on each request), put it where that run only once when you run your applications
 like main and init functions.
 
 ## License

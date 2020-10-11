@@ -1,9 +1,10 @@
 package container_test
 
 import (
-	"github.com/golobby/container/pkg/container"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/Jblew/ioccontainer/pkg/container"
+	"github.com/stretchr/testify/assert"
 )
 
 type Shape interface {

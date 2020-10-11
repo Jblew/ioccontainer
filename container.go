@@ -3,9 +3,10 @@
 package container
 
 import (
-	internal "github.com/golobby/container/pkg/container"
+	internal "github.com/Jblew/ioccontainer/pkg/container"
 )
 
+// NewContainer makes new container
 func NewContainer() internal.Container {
 	return make(internal.Container)
 }
