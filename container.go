@@ -1,18 +1,18 @@
 // Package container provides an IoC container for Go projects.
 // It provides simple, fluent and easy-to-use interface to make dependency injection in GoLang easier.
-package container
+package ioccontainer
 
 import (
-	internal "github.com/Jblew/ioccontainer/pkg/container"
+	internal "github.com/Jblew/ioccontainer/pkg/ioccontainer"
 )
 
 // NewContainer makes new container
-func NewContainer() internal.Container {
-	return make(internal.Container)
+func NewContainer() *internal.Container {
+	return &internal.Container{}
 }
 
 // A default instance for container
-var container internal.Container = internal.NewContainer()
+var container *internal.Container = NewContainer()
 
 // Singleton creates a singleton for the default instance.
 func Singleton(resolver interface{}) {

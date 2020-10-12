@@ -1,9 +1,10 @@
-package container_test
+package ioccontainer_test
 
 import (
+	"log"
 	"testing"
 
-	"github.com/Jblew/ioccontainer/pkg/container"
+	"github.com/Jblew/ioccontainer"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -34,7 +35,7 @@ func (m MySQL) Connect() bool {
 	return true
 }
 
-var instance = container.NewContainer()
+var instance = ioccontainer.NewContainer()
 
 func TestSingletonItShouldMakeAnInstanceOfTheAbstraction(t *testing.T) {
 	area := 5
@@ -51,6 +52,7 @@ func TestSingletonItShouldMakeAnInstanceOfTheAbstraction(t *testing.T) {
 
 func TestSingletonItShouldMakeSameObjectEachMake(t *testing.T) {
 	instance.Singleton(func() Shape {
+		log.Printf("Constructing Shape")
 		return &Circle{a: 5}
 	})
 
@@ -203,7 +205,7 @@ func TestMakeWithNonReference(t *testing.T) {
 }
 
 func TestMakeWithUnboundedAbstraction(t *testing.T) {
-	value := "no concrete found for the abstraction container_test.Shape"
+	value := "no concrete found for the abstraction ioccontainer_test.Shape"
 	assert.PanicsWithValue(t, value, func() {
 		var s Shape
 		instance.Reset()
@@ -212,7 +214,7 @@ func TestMakeWithUnboundedAbstraction(t *testing.T) {
 }
 
 func TestMakeWithCallbackThatHasAUnboundedAbstraction(t *testing.T) {
-	value := "no concrete found for the abstraction: container_test.Database"
+	value := "no concrete found for the abstraction: ioccontainer_test.Database"
 	assert.PanicsWithValue(t, value, func() {
 		instance.Reset()
 		instance.Singleton(func() Shape {
