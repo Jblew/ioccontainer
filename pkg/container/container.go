@@ -8,8 +8,9 @@ import (
 
 // binding keeps a binding resolver and instance (for singleton bindings).
 type binding struct {
-	resolver interface{} // resolver function
-	instance interface{} // instance stored for singleton bindings
+	resolver  interface{} // resolver function
+	instance  interface{} // instance stored for singleton bindings
+	singleton bool
 }
 
 // resolve will return the concrete of related abstraction.
@@ -18,7 +19,13 @@ func (b binding) resolve(c Container) interface{} {
 		return b.instance
 	}
 
-	return c.invoke(b.resolver)
+	instance := c.invoke(b.resolver)
+
+	if b.singleton {
+		b.instance = instance
+	}
+
+	return instance
 }
 
 // Container is a map of reflect.Type to binding
@@ -37,14 +44,9 @@ func (c Container) bind(resolver interface{}, singleton bool) {
 	}
 
 	for i := 0; i < resolverTypeOf.NumOut(); i++ {
-		var instance interface{}
-		if singleton {
-			instance = c.invoke(resolver)
-		}
-
 		c[resolverTypeOf.Out(i)] = binding{
-			resolver: resolver,
-			instance: instance,
+			resolver:  resolver,
+			singleton: singleton,
 		}
 	}
 }
